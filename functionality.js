@@ -8,9 +8,6 @@ const addNewlink = (array, value) => {
 
 const deleteTask = (array, id) => {
   array.splice(id, 1);
-  for (let index = 0; index < array.length; index += 1) {
-    array[index].index = index + 1;
-  }
   localStorage.setItem('myLeads', JSON.stringify(array));
 };
 
