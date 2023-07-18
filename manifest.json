@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "version": "1.0",
-  "name": "Yacos add fav",
+  "version": "1.2",
+  "name": "pure_fav",
   "action": {
     "default_popup": "index.html",
     "default_icon": "icon.png"
@@ -11,5 +11,7 @@
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "permissions": ["tabs"]
+  "permissions": [
+    "tabs"
+  ]
 }
