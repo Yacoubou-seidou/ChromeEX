@@ -1,6 +1,7 @@
 import {
   addNewlink, editTask, deleteTask,
 } from './functionality.js';
+import { fetchFaviconLink } from './favIcon.js';
 let myLeads = [];
 let oldLeads = [];
 const inputEl = document.getElementById("input-el");
@@ -17,8 +18,10 @@ if (leadsFromLocalStorage) {
 }
 
 tabBtn.addEventListener("click", function () {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    const lead = { link: tabs[0].url, showName: tabs[0].url }
+
+  chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+    const icone = await getIcon(tabs[0].url)
+    const lead = { link: tabs[0].url, showName: tabs[0].url, icon: icone }
     myLeads.push(lead);
     localStorage.setItem("myLeads", JSON.stringify(myLeads));
     render(myLeads);
@@ -30,13 +33,15 @@ tabBtn.addEventListener("click", function () {
 
 function render(myLeads) {
   const element = document.querySelector('.listContent');
+  /////
+  ////
   const filteredArray = myLeads.sort((a, b) => a.index - b.index);
   let content = "";
   filteredArray.forEach((lead, index) => {
     content += `
     <li class='borderStyle d-flex justify-content-center align-items-center col-12' data-iden="${index}">
     <fieldset>
-    <legend> <a href='${lead.link}' class='leLien' target="_blank" rel="noopener noreferrer">
+    <legend><img src='${lead.icon}' alt="icon" > <a href='${lead.link}' class='leLien' target="_blank" rel="noopener noreferrer">
     ${lead.showName.substring(0, 18)}</a ></legend >
     <div class='d-flex'>
         <input class='formel edition' type="text" id="description" name="description" value='${lead.showName}'>
@@ -129,6 +134,24 @@ inputBtn.addEventListener("click", function () {
     toggleEdit()
   }
 });
+
+const getIcon = async (link) => {
+  console.log(link);
+  await fetchFaviconLink(link)
+    .then((faviconUrl) => {
+      console.log(faviconUrl);
+      if (faviconUrl) {
+        console.log('Favicon link:', faviconUrl);
+        return faviconUrl
+      } else {
+        console.log('Favicon link not found.');
+        return ''
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
 deleteFunction()
 editFunction()
 toggleEdit()
