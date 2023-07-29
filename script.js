@@ -37,11 +37,12 @@ function render(myLeads) {
   ////
   const filteredArray = myLeads.sort((a, b) => a.index - b.index);
   let content = "";
+  // <img src='${lead.icon}' alt="icon" >
   filteredArray.forEach((lead, index) => {
     content += `
     <li class='borderStyle d-flex justify-content-center align-items-center col-12' data-iden="${index}">
     <fieldset>
-    <legend><img src='${lead.icon}' alt="icon" > <a href='${lead.link}' class='leLien' target="_blank" rel="noopener noreferrer">
+    <legend> <a href='${lead.link}' class='leLien' target="_blank" rel="noopener noreferrer">
     ${lead.showName.substring(0, 18)}</a ></legend >
     <div class='d-flex'>
         <input class='formel edition' type="text" id="description" name="description" value='${lead.showName}'>
