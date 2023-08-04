@@ -1,9 +1,7 @@
 import {
   addNewlink, editTask, deleteTask, getIcon
 } from './functionality.js';
-import { fetchFaviconLink } from './favIcon.js';
 let myLeads = [];
-let oldLeads = [];
 const inputEl = document.getElementById("input-el");
 const inputBtn = document.getElementById("input-btn");
 const deleteBtn = document.getElementById("delete-btn");
@@ -33,8 +31,6 @@ tabBtn.addEventListener("click", function () {
 
 function render(myLeads) {
   const element = document.querySelector('.listContent');
-  /////
-  ////
   const filteredArray = myLeads.sort((a, b) => a.index - b.index);
   let content = "";
   // <img src='${lead.icon}' alt="icon" >
