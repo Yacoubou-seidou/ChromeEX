@@ -1,5 +1,5 @@
 import {
-  addNewlink, editTask, deleteTask,
+  addNewlink, editTask, deleteTask, getIcon
 } from './functionality.js';
 import { fetchFaviconLink } from './favIcon.js';
 let myLeads = [];
@@ -135,24 +135,6 @@ inputBtn.addEventListener("click", function () {
     toggleEdit()
   }
 });
-
-const getIcon = async (link) => {
-  console.log(link);
-  await fetchFaviconLink(link)
-    .then((faviconUrl) => {
-      console.log(faviconUrl);
-      if (faviconUrl) {
-        console.log('Favicon link:', faviconUrl);
-        return faviconUrl
-      } else {
-        console.log('Favicon link not found.');
-        return ''
-      }
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
 deleteFunction()
 editFunction()
 toggleEdit()

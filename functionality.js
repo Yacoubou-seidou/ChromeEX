@@ -39,5 +39,5 @@ const getIcon = (link) => {
 }
 
 export {
-  addNewlink, deleteTask, editTask,
+  addNewlink, deleteTask, editTask, getIcon
 };
