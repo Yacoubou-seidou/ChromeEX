@@ -22,20 +22,7 @@ const editTask = (array, id, value) => {
 };
 
 const getIcon = (link) => {
-  fetchFaviconLink(link)
-    .then((faviconUrl) => {
-      console.log(faviconUrl);
-      if (faviconUrl) {
-        console.log('Favicon link:', faviconUrl);
-        return faviconUrl
-      } else {
-        console.log('Favicon link not found.');
-        return ''
-      }
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+  return fetchFaviconLink(link)
 }
 
 export {

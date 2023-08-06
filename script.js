@@ -6,8 +6,6 @@ const inputEl = document.getElementById("input-el");
 const inputBtn = document.getElementById("input-btn");
 const deleteBtn = document.getElementById("delete-btn");
 const tabBtn = document.getElementById("tab-btn");
-const todoPlaceholder = document.querySelector('.todoPlaceholder');
-const allLinks = document.querySelector('.allLinks');
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
 
 if (leadsFromLocalStorage) {
@@ -15,8 +13,7 @@ if (leadsFromLocalStorage) {
   render(myLeads);
 }
 
-tabBtn.addEventListener("click", function () {
-
+tabBtn.addEventListener("click", async function () {
   chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
     const icone = await getIcon(tabs[0].url)
     const lead = { link: tabs[0].url, showName: tabs[0].url, icon: icone }
@@ -37,6 +34,7 @@ function render(myLeads) {
   filteredArray.forEach((lead, index) => {
     content += `
     <li class='borderStyle d-flex justify-content-center align-items-center col-12' data-iden="${index}">
+    <img src="${lead.icon}" alt="fav-icon">
     <fieldset>
     <legend> <a href='${lead.link}' class='leLien' target="_blank" rel="noopener noreferrer">
     ${lead.showName.substring(0, 18)}</a ></legend >
