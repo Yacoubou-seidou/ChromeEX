@@ -1,5 +1,5 @@
 import {
-  addNewlink, editTask, deleteTask, getIcon
+  addNewlink, editLink, deleteLink, getIcon
 } from './functionality.js';
 let myLeads = [];
 const inputEl = document.getElementById("input-el");
@@ -54,12 +54,12 @@ function deleteFunction() {
   const supp = document.querySelectorAll(".spanbtn");
   supp.forEach((element) => {
     element.addEventListener("click", () => {
-      console.log(element.parentNode.parentNode.parentNode);
       let idx = parseInt(element.parentNode.parentNode.parentNode.getAttribute("data-iden"));
-      console.log(idx);
-      deleteTask(myLeads, idx)
+      deleteLink(myLeads, idx)
       let removeEl = element.parentNode.parentNode.parentNode;
       removeEl.remove();
+      myLeads = JSON.parse(localStorage.getItem("myLeads"));
+      render(myLeads)
     });
   });
 };
@@ -69,7 +69,7 @@ function editFunction() {
   formsElements.forEach((formel, index) => {
     formel.addEventListener('input', (e) => {
       e.preventDefault();
-      editTask(myLeads, index, e.target.value);
+      editLink(myLeads, index, e.target.value);
     });
   });
 };
@@ -111,6 +111,7 @@ inputBtn.addEventListener("click", function () {
     myLeads.forEach((lead, index) => {
       element += `
     <li class='borderStyle d-flex justify-content-center align-items-center col-12' data-iden="${index}">
+    <img src="${lead.icon}" alt="fav-icon">
     <fieldset>
     <legend> <a href='${lead.link}' class='leLien' target="_blank" rel="noopener noreferrer">
     ${lead.showName.substring(0, 18)}</a ></legend >
