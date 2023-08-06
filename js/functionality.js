@@ -8,12 +8,12 @@ const addNewlink = async (array, value) => {
   addForm.reset();
 };
 
-const deleteTask = (array, id) => {
+const deleteLink = (array, id) => {
   array.splice(id, 1);
   localStorage.setItem('myLeads', JSON.stringify(array));
 };
 
-const editTask = (array, id, value) => {
+const editLink = (array, id, value) => {
   const edit = {
     link: array[id].link, showName: value, icon: array[id].icon, index: id + 1,
   };
@@ -26,5 +26,5 @@ const getIcon = (link) => {
 }
 
 export {
-  addNewlink, deleteTask, editTask, getIcon
+  addNewlink, deleteLink, editLink, getIcon
 };

@@ -2,24 +2,37 @@
   "manifest_version": 3,
   "version": "1.2",
   "name": "pure_fav",
+  "description": "Save and edit links effortlessly with this powerful Chrome extension. Easily capture important webpages, rename them for clarity, and organize your digital resources for future reference.",
   "action": {
-    "default_popup": "index.html",
-    "default_icon": "icon.png"
+    "default_popup": "/public/index.html",
+    "default_icon": "/images/icon.png"
   },
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "16": "/images/icon16.png",
+    "48": "/images/icon48.png",
+    "128": "/images/icon128.png"
   },
   "permissions": [
     "tabs",
-    "favicon"
+    "favicon",
+    "activeTab",
+    "storage"
   ],
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
   "web_accessible_resources": [
     {
-      "resources": ["_favicon/*"],
-      "matches": ["<all_urls>"],
-      "extension_ids": ["*"]
+      "resources": [
+        "_favicon/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "extension_ids": [
+        "*"
+      ]
     }
   ]
 }
