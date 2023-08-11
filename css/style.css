@@ -14,7 +14,7 @@ body {
   align-items: center;
   padding: 10px;
   overflow: hidden;
-  width: 386px;
+  width: 400px;
   background: #565b62;
 }
 
@@ -114,9 +114,6 @@ h1 {
   overflow-y: auto;
   padding: 10px;
   max-width: 386;
-  box-shadow: 14px 3px 19px 7px rgba(239, 238, 238, 0.86);
-  -webkit-box-shadow: 14px 3px 19px 7px rgba(239, 238, 238, 0.86);
-  -moz-box-shadow: 14px 3px 19px 7px rgba(239, 238, 238, 0.86);
 }
 
 #description {
@@ -137,6 +134,7 @@ h1 {
 .leLien {
   width: 200px;
 }
+
 
 legend a {
   font-size: 15px;
